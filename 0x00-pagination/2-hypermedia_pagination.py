@@ -2,6 +2,7 @@
 """a class to manage index range for pagination"""
 
 import csv
+import math
 from typing import List
 
 index_range = __import__('0-simple_helper_function').index_range
@@ -52,7 +53,7 @@ class Server:
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """
         Retrieves a hypermedia representation of a specific page of the
-        dataset based on the given page number and page size.
+        dataset.
 
         Args:
             page (int, optional): The page number to retrieve. Defaults to 1.
@@ -61,25 +62,18 @@ class Server:
 
         Returns:
             dict: A dictionary containing the hypermedia representation of the
-            page. The dictionary has the following keys:
-                - "page_size" (int): The number of items in the page.
-                - "Page" (int): The page number.
-                - "data" (list): A list of lists representing the subset of
-                data for the given page.
-                - "next_page" (int or None): The page number of the next page,
-                or None if there is no next page.
-                - "prev_page" (int or None): The page number of the previous
-                page, or None if there is no previous page.
-                - "total_page" (int): The total number of pages.
+            page.
         """
         data = self.get_page(page, page_size)
-        total_pages = len(self.dataset()) // page_size + 1
+        total_items = len(self.dataset())
+        total_pages = math.ceil(total_items / page_size)
         next_page = page + 1 if page < total_pages else None
         prev_page = page - 1 if page > 1 else None
+
         return {
-            "Page": page,
-            "page_size": page_size if page_size <= len(data) else len(data),
-            "total_page": total_pages,
+            "page_size": len(data),
+            "page": page,
+            "total_pages": total_pages,
             "data": data,
             "prev_page": prev_page,
             "next_page": next_page,
