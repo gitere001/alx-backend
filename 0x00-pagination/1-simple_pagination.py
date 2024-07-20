@@ -27,6 +27,19 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """
+        Get a specific page of the dataset based on the page number and page
+        size.
+
+        Args:
+            self: The Server instance.
+            page (int): The page number to retrieve (default is 1).
+            page_size (int): The number of items per page (default is 10).
+
+        Returns:
+            List[List]: A list of lists representing the subset of data for
+            the given page.
+        """
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
         start_index, end_index = index_range(page, page_size)
