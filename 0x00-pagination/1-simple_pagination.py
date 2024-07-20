@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+"""a class to manage index range for pagination"""
 
 import csv
-import math
 from typing import List
 
 index_range = __import__('0-simple_helper_function').index_range
@@ -35,7 +35,3 @@ class Server:
             return dataset[start_index:end_index]
         except IndexError:
             return []
-
-
-server = Server()
-server.get_page(1, 10)
