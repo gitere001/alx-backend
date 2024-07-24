@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
 """Class BasicCache that inherits from BaseCaching"""
 from base_caching import BaseCaching
-from typing import Any, Optional
 
 
 class BasicCache(BaseCaching):
-    def __init__(self) -> None:
+    def __init__(self):
         """
         Initialize the object.
         """
         super().__init__()
 
-    def put(self, key: Any, item: Any) -> None:
+    def put(self, key, item):
         """
         Adds an item to the cache.
 
@@ -26,7 +25,7 @@ class BasicCache(BaseCaching):
             return
         self.cache_data[key] = item
 
-    def get(self, key: Any) -> Optional[Any]:
+    def get(self, key):
         """
         Get the value associated with the given key from the cache.
 
