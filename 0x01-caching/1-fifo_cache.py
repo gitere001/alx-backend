@@ -5,6 +5,7 @@ from typing import Any, Optional
 
 
 class FIFOCache(BaseCaching):
+    """class FIFOCache that inherits from BaseCaching"""
     def __init__(self) -> None:
         """
         Initialize the object.

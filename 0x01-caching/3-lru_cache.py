@@ -5,6 +5,7 @@ from typing import Any
 
 
 class LRUCache(BaseCaching):
+    """class LRUCache that inherits from BaseCaching"""
     def __init__(self) -> None:
         """
         Initialize the object.

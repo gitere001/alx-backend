@@ -5,6 +5,7 @@ from typing import Any
 
 
 class MRUCache(BaseCaching):
+    """class MRUCache that inherits from BaseCaching"""
     def __init__(self) -> None:
         """Initialize the object"""
         super().__init__()

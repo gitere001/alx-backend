@@ -5,6 +5,7 @@ from typing import Any
 
 
 class LIFOCache(BaseCaching):
+    """class LIFOCache that inherits from BaseCaching"""
     def __init__(self) -> None:
         super().__init__()
         self.order = []
