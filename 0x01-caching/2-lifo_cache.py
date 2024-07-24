@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""""""
+"""a class LIFOCache that inherits from BaseCaching"""
 from base_caching import BaseCaching
 from typing import Any
 
