@@ -12,6 +12,7 @@ class MRUCache(BaseCaching):
         self.order = []
 
     def put(self, key: Any, item: Any) -> None:
+        """a method put - Adds an item in the cache"""
         if key is None or item is None:
             return
         else:
@@ -25,7 +26,8 @@ class MRUCache(BaseCaching):
             self.order.append(key)
             self.cache_data[key] = item
 
-    def get(self, key):
+    def get(self: Any, key: Any) -> Any:
+        """a method get - Returns the value in self.cache_data linked to key"""
         if key is None or key not in self.cache_data:
             return None
         del self.order[self.order.index(key)]

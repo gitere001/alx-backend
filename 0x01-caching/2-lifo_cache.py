@@ -7,10 +7,12 @@ from typing import Any
 class LIFOCache(BaseCaching):
     """class LIFOCache that inherits from BaseCaching"""
     def __init__(self) -> None:
+        """initilize the object"""
         super().__init__()
         self.order = []
 
     def put(self, key: Any, item: Any) -> Any:
+        """method put - Adds an item in the cache"""
         if key is None or item is None:
             return
         else:
