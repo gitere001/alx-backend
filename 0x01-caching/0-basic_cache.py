@@ -5,7 +5,7 @@ from typing import Any, Optional
 
 
 class BasicCache(BaseCaching):
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize the object.
         """
