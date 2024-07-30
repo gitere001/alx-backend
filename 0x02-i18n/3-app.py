@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Flask configuration and application setup."""
-
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
@@ -14,7 +13,6 @@ class Config(object):
 
 app = Flask(__name__)
 app.config.from_object(Config)
-
 babel = Babel(app)
 
 
@@ -23,7 +21,7 @@ def get_locale():
     """
     Returns the best matching locale from the list of available locales based
     on the user's accepted languages.
-    This function is used as a locale_selector for the Flask-Babel extension.
+    This function is used as a localeselector for the Flask-Babel extension.
 
     :return: A string representing the best matching locale.
     """
