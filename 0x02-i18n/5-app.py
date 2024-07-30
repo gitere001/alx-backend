@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-'''Task 4: Force locale with URL parameter
+'''Task 4: Force locale with URL parameter.
+
+This module sets up a Flask application with Babel to handle
+localization. It includes user retrieval, locale selection, and
+routing for the main page.
 '''
 
 from typing import Dict, Union
@@ -7,9 +11,13 @@ from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
 
-class Config(object):
-    '''Config class for the Flask app.'''
+class Config:
+    '''Configuration class for the Flask app.
 
+    This class contains configuration settings for the Flask
+    application, including debug mode, supported languages,
+    default locale, and default timezone.
+    '''
     DEBUG = True
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -30,7 +38,13 @@ users = {
 
 
 def get_user() -> Union[Dict, None]:
-    """Retrieves a user based on a user id.
+    """Retrieve a user based on a user id.
+
+    Retrieves a user dictionary from the users list based on
+    the `login_as` query parameter.
+
+    Returns:
+        dict or None: The user dictionary if found, None otherwise.
     """
     login_id = request.args.get('login_as')
     if login_id:
@@ -40,18 +54,23 @@ def get_user() -> Union[Dict, None]:
 
 @app.before_request
 def before_request() -> None:
-    """Performs some routines before each request's resolution.
-    """
+    """Perform routines before each request's resolution.
 
+    Sets the global user object to the user retrieved from
+    the `get_user` function.
+    """
     g.user = get_user()
 
 
 @babel.localeselector
 def get_locale() -> str:
-    """Retrieves the locale for a web page.
+    """Retrieve the locale for a web page.
+
+    Determines the best match locale from the `locale` query
+    parameter or the request's `Accept-Language` headers.
 
     Returns:
-        str: best match
+        str: The best match locale.
     """
     locale = request.args.get('locale')
     if locale in app.config['LANGUAGES']:
@@ -61,10 +80,12 @@ def get_locale() -> str:
 
 @app.route('/')
 def index() -> str:
-    '''default route
+    '''Render the homepage.
+
+    Renders the homepage template.
 
     Returns:
-        html: homepage
+        str: The rendered homepage template.
     '''
     return render_template("5-index.html")
 
