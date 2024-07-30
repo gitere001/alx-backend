@@ -29,7 +29,7 @@ def get_locale():
 
 
 @app.route('/', strict_slashes=False)
-def index():
+def index() -> str:
     """
     A Flask route decorator that handles the root URL ("/") and renders the
     "3-index.html" template.
