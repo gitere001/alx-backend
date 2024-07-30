@@ -1,47 +1,50 @@
 #!/usr/bin/env python3
-"""Flask configuration and application setup."""
+'''Task 4: Force locale with URL parameter
+'''
+
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
-class Config(object):
-    """Configuration class for Flask and Babel."""
+class Config:
+    '''Config class'''
+
+    DEBUG = True
     LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale():
-    """
-    Returns the best matching locale from the list of available locales based
-    on the user's accepted languages.
-    This function is used as a localeselector for the Flask-Babel extension.
+def get_locale() -> str:
+    """Retrieves the locale for a web page.
 
-    :return: A string representing the best matching locale.
+    Returns:
+        str: best match
     """
-    locale = request.args.get()
+    locale = request.args.get('locale')
     if locale in app.config['LANGUAGES']:
         return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@app.route('/', strict_slashes=False)
+@app.route('/')
 def index() -> str:
     """
     A Flask route decorator that handles the root URL ("/") and renders the
-    "3-index.html" template.
+    "4-index.html" template.
 
     Returns:
-        The rendered HTML content of the "3-index.html" template.
+        str: The rendered HTML content of the "4-index.html" template.
     """
-    return render_template('4-index.html')
+    return render_template("4-index.html")
 
 
 if __name__ == "__main__":
-    app.run(port=5000, host="0.0.0.0", debug=True)
+    app.run()
