@@ -8,7 +8,7 @@ from flask_babel import Babel
 
 
 class Config:
-    '''Config class'''
+    '''Config class for the Flask app.'''
 
     DEBUG = True
     LANGUAGES = ["en", "fr"]
@@ -67,11 +67,6 @@ def index() -> str:
         html: homepage
     '''
     return render_template("5-index.html")
-
-# uncomment this line and comment the @babel.localeselector
-# you get this error:
-# AttributeError: 'Babel' object has no attribute 'localeselector'
-# babel.init_app(app, locale_selector=get_locale)
 
 
 if __name__ == "__main__":
