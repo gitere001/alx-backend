@@ -1,10 +1,13 @@
+#!/usr/bin/env python3
+""" a Flask route decorator that handles the root URL (/) and renders the"""
+
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def root():
+def index():
     """
     A Flask route decorator that handles the root URL ("/") and renders the
     "0-index.html" template.

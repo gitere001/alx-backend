@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+""" a Flask route decorator that handles the root URL ("/") and renders the"""
+
 from flask import Flask, render_template
 from flask_babel import Babel
 
